@@ -1,6 +1,7 @@
-import { Form, Link } from "react-router";
+import { Form, Link, useActionData } from "react-router";
 
 export default function SignIn() {
+  const { error } = useActionData() || {};
   return (
     <div className="h-dvh w-dvw flex justify-center items-center bg-base-200">
       <Form
@@ -14,11 +15,13 @@ export default function SignIn() {
         <div className="card-body gap-0">
           <input
             type="text"
+            name="email"
             className="mb-5 input input-lg w-full focus:outline-none focus:border-b-accent border-0 border-b-2 transition-colors duration-200 bg-base-300/20 focus:bg-transparent font-medium"
-            placeholder="username or email"
+            placeholder="email"
           />
           <input
             type="password"
+            name="password"
             className="mb-2 input input-lg w-full focus:outline-none focus:border-b-accent border-0 border-b-2 transition-colors duration-200 bg-base-300/20 focus:bg-transparent font-medium"
             placeholder="password"
           />
@@ -33,6 +36,7 @@ export default function SignIn() {
           <button type="submit" className="btn btn-lg btn-primary">
             Submit
           </button>
+          {error && <p className="text-error">{error}</p>}
         </div>
       </Form>
     </div>
