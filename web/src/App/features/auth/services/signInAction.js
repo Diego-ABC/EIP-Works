@@ -1,5 +1,5 @@
 import { login } from ".";
-import { redirect } from "react-router-dom";
+import { redirect } from "react-router";
 export default async function signInAction({ request, params }) {
   try {
     const formData = Object.fromEntries(await request.formData());
