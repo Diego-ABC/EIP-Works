@@ -1,3 +1,5 @@
+import "@/lib/firebase";
+
 import router from "./router";
 import { RouterProvider } from "react-router";
 
