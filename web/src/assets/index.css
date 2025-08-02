@@ -2,6 +2,7 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @plugin "daisyui";
+
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
@@ -28,7 +29,7 @@
   --color-error: oklch(51% 0.222 16.935);
   --color-error-content: oklch(89% 0.058 10.001);
   --radius-selector: 0rem;
-  --radius-field: 0rem;
+  --radius-field: 0.25rem;
   --radius-box: 0rem;
   --size-selector: 0.28125rem;
   --size-field: 0.28125rem;
@@ -62,12 +63,12 @@
   --color-warning-content: oklch(41% 0.112 45.904);
   --color-error: oklch(58% 0.253 17.585);
   --color-error-content: oklch(94% 0.03 12.58);
-  --radius-selector: 0.5rem;
-  --radius-field: 0rem;
+  --radius-selector: 0rem;
+  --radius-field: 0.25rem;
   --radius-box: 0rem;
   --size-selector: 0.28125rem;
   --size-field: 0.28125rem;
   --border: 2px;
-  --depth: 0;
+  --depth: 1;
   --noise: 0;
 }
