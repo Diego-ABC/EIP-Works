@@ -1,0 +1,1 @@
+export default "rounded-b-none input input-lg focus-within:outline-none focus-within:border-b-accent border-0 border-b-2 transition-colors duration-200 bg-base-300/20 focus-within:bg-transparent font-medium";
