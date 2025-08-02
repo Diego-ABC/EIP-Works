@@ -8,6 +8,7 @@ import signOutLoader from "./features/auth/services/signOutLoader";
 import signInAction from "./features/auth/services/signInAction";
 import UserProvider from "./features/auth/providers/UserProvider";
 import DashboardLayout from "./layout/DashboardLayout";
+import StaffList from "./features/staff/pages/StaffList";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
           </UserProvider>
         }
       >
+        <Route path="staff" element={<StaffList />} />
         <Route path="*" element={<>Sorry this page doesn't exist yet</>} />
       </Route>
       <Route
