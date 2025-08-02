@@ -30,18 +30,19 @@ const rootRoutes = [
 export default function NavPane({ className }) {
   return (
     <div
-      className={[className, "h-full bg-base-300 flex flex-col p-5 gap-4"].join(
-        " "
-      )}
+      className={[
+        className,
+        "hidden h-full bg-base-300 md:flex flex-col p-5 gap-4",
+      ].join(" ")}
     >
       {rootRoutes.map((route) => (
         <NavLink key={route.href} linkData={route} />
       ))}
-      <div className="flex flex-row w-full mt-auto gap-2">
-        <Link to="/signin" className="btn btn-warning font-bold">
+      <div className="flex flex-row w-full mt-auto gap-1">
+        <Link to="/signin" className="btn btn-warning font-bold rounded-r-none">
           <Exit /> Sign Out
         </Link>
-        <DarkModeToggle />
+        <DarkModeToggle className="rounded-l-none" />
       </div>
     </div>
   );
