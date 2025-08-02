@@ -8,7 +8,10 @@
     <script>
       const darkModeLSKey = "darkModeEnabled";
       const isDarkMode = JSON.parse(localStorage.getItem(darkModeLSKey));
-      document.body.setAttribute("data-theme", isDarkMode ? "dark" : "light");
+      document.documentElement.setAttribute(
+        "data-theme",
+        isDarkMode ? "dark" : "light"
+      );
     </script>
   </head>
   <body>
