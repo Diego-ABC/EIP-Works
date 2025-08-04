@@ -7,9 +7,17 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
-const {setGlobalOptions} = require("firebase-functions");
-const {onRequest} = require("firebase-functions/https");
-const logger = require("firebase-functions/logger");
+// const {setGlobalOptions} = require("firebase-functions");
+// const {onRequest} = require("firebase-functions/https");
+// const logger = require("firebase-functions/logger");
+import { setGlobalOptions } from "firebase-functions/options";
+import { initializeApp } from "firebase-admin/app";
+initializeApp();
+export { createAndVerifyUser } from "./userManagement/createAndVerifyUser.js";
+export { sendInviteEmail } from "./userManagement/sendInviteEmail.js";
+// const logger
+
+// export { sendTestEmail } from "./mailgun/sendTestEmail.js";
 
 // For cost control, you can set the maximum number of containers that can be
 // running at the same time. This helps mitigate the impact of unexpected
