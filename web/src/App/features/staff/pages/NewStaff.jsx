@@ -3,11 +3,14 @@ import StaffListHeader from "../components/StaffListHeader";
 import { Form, useActionData } from "react-router";
 
 export default function NewStaff() {
-  const { error } = useActionData() || {};
+  const { error, success, link } = useActionData() || {};
   return (
     <>
       <StaffListHeader>Staff {">"} New</StaffListHeader>
-      <Form className="w-fit grid grid-cols-4 gap-2 p-5 bg-base-100">
+      <Form
+        className="w-fit grid grid-cols-4 gap-2 p-5 bg-base-100"
+        method="POST"
+      >
         <TextInputField
           name="firstName"
           placeholder="First Name"
@@ -66,6 +69,11 @@ export default function NewStaff() {
         <button className="btn btn-soft dark:btn btn-success btn-lg col-span-4">
           Save
         </button>
+        {error && <p className="text-error font-medium col-span-4">{error}</p>}
+        {link && <p className="text-error font-medium col-span-4">{link}</p>}
+        {success && (
+          <p className="text-success font-medium col-span-4">{success}</p>
+        )}
       </Form>
     </>
   );
