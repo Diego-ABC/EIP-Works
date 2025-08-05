@@ -13,7 +13,7 @@ const whiteListColSpan = [
   "col-span-8",
 ];
 const defaultTableRowClass = "grid grid-cols-subgrid";
-const linkRowClass = "hover:bg-black/20";
+const linkRowClass = "hover:bg-black/20 hover:dark:bg-white/10";
 export default function GridTableRow({
   linkTo = "",
   children,
@@ -31,6 +31,10 @@ export default function GridTableRow({
       {children.map((child, i) =>
         typeof child === "string" ? (
           <GridTableCell key={i}>{child}</GridTableCell>
+        ) : typeof child === "object" ? (
+          <GridTableCell key={i} className={child.className}>
+            {child.content}
+          </GridTableCell>
         ) : (
           child
         )

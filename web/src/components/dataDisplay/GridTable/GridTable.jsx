@@ -1,6 +1,7 @@
 import GridTableRow from "./GridTableRow";
 import GridTableHeaderRow from "./GridTableHeaderRow";
 import classMerge from "@/lib/utils/stylings/classMerge";
+import { isValidElement } from "react";
 
 const whiteListGridCols = [
   "grid-cols-1",
@@ -29,7 +30,15 @@ export default function GridTable({ className, cols, children }) {
         header
       )}
       {body.map((row, i) =>
-        Array.isArray(row) ? <GridTableRow key={i}>{row}</GridTableRow> : row
+        Array.isArray(row) ? (
+          <GridTableRow key={i}>{row}</GridTableRow>
+        ) : isValidElement(row) ? (
+          row
+        ) : (
+          <GridTableRow key={i} linkTo={row.href} className={row.className}>
+            {row.content}
+          </GridTableRow>
+        )
       )}
     </div>
   );
