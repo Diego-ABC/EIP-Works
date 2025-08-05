@@ -17,6 +17,7 @@ import inviteCodeLoader from "./features/auth/loadersAndActions/inviteCodeLoader
 import InviteAccept from "./features/auth/pages/InviteAccept";
 import BadInviteCode from "./features/auth/pages/BadInviteCode";
 import inviteSetPasswordAction from "./features/auth/loadersAndActions/inviteSetPasswordAction";
+import CasesList from "./features/cases/pages/CasesList";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
           </UserProvider>
         }
       >
+        <Route path="cases" element={<CasesList />} />
         <Route path="staff">
           <Route index element={<StaffList />} />
           <Route path="new" element={<NewStaff />} action={addStaffAction} />
