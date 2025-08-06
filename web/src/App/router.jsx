@@ -18,6 +18,7 @@ import InviteAccept from "./features/auth/pages/InviteAccept";
 import BadInviteCode from "./features/auth/pages/BadInviteCode";
 import inviteSetPasswordAction from "./features/auth/loadersAndActions/inviteSetPasswordAction";
 import CasesList from "./features/cases/pages/CasesList";
+import defaultPageLoader from "./layout/DashboardLayout/defaultPageLoader";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
           </UserProvider>
         }
       >
+        <Route index loader={defaultPageLoader} />
         <Route path="cases" element={<CasesList />} />
         <Route path="staff">
           <Route index element={<StaffList />} />
