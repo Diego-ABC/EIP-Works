@@ -19,6 +19,9 @@ import BadInviteCode from "./features/auth/pages/BadInviteCode";
 import inviteSetPasswordAction from "./features/auth/loadersAndActions/inviteSetPasswordAction";
 import CasesList from "./features/cases/pages/CasesList";
 import defaultPageLoader from "./layout/DashboardLayout/defaultPageLoader";
+import NewCase from "./features/cases/pages/NewCase";
+import newCaseAction from "./features/cases/loadersAndActions/newCaseAction";
+import casesListLoader from "./features/cases/loadersAndActions/casesListLoader";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,7 +35,10 @@ const router = createBrowserRouter(
         }
       >
         <Route index loader={defaultPageLoader} />
-        <Route path="cases" element={<CasesList />} />
+        <Route path="cases">
+          <Route index element={<CasesList />} loader={casesListLoader} />
+          <Route path="new" element={<NewCase />} action={newCaseAction} />
+        </Route>
         <Route path="staff">
           <Route index element={<StaffList />} />
           <Route path="new" element={<NewStaff />} action={addStaffAction} />

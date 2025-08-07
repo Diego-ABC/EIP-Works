@@ -1,6 +1,7 @@
 import DashboardHeader from "@/App/layout/DashboardLayout/DashboardPage/DashboardHeader";
 import CasesListTable from "../components/CasesListTable";
 import AddLinkbutton from "@/components/buttons/AddLinkButton";
+import { useLoaderData } from "react-router";
 
 const sampleCases = [
   {
@@ -28,10 +29,10 @@ const casePropertiesArray = ({
   lastName,
   dob,
   eiNumber,
-  auths,
+  auths = [],
 }) => {
   return {
-    href: `cases/${id}`,
+    href: `/cases/${id}`,
     className: "",
     content: [
       firstName + " " + lastName,
@@ -42,12 +43,14 @@ const casePropertiesArray = ({
   };
 };
 export default function CasesList() {
-  const cases = sampleCases;
+  // const cases = sampleCases;
+  const { cases, error } = useLoaderData();
   console.log(cases);
   return (
     <>
       <DashboardHeader>Cases</DashboardHeader>
       <AddLinkbutton href="/cases/new" />
+      {error && <p className="font-medium text-error">{error}</p>}
       <CasesListTable
         headers={["Name", "Date of Birth", "EI #", "Authorizations"]}
         cases={cases.map((eiCase) => casePropertiesArray(eiCase))}
