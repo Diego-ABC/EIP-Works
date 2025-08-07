@@ -1,5 +1,5 @@
 import DashboardHeader from "@/App/layout/DashboardLayout/DashboardPage/DashboardHeader";
-import { Form } from "react-router";
+import { Form, useActionData } from "react-router";
 import TextInputField from "@/components/formComponents/TextInputField";
 import RadioOptions from "@/components/formComponents/RadioOptions";
 import SectionTitle from "@/components/formComponents/SectionTitle";
@@ -7,8 +7,16 @@ import SelectDropDown from "@/components/formComponents/SelectDropDown";
 import SelectDropDownV2 from "@/components/formComponents/SelectDropDownV2";
 import SearchableDropDown from "@/components/formComponents/SearchableDropDown";
 import formatPhoneNumber from "@/lib/utils/formatting/formatPhoneNumber";
+import { useEffect, useState } from "react";
 
 export default function NewCase() {
+  const { error } = useActionData() || {};
+  const [submitting, setSubmitting] = useState(false);
+  useEffect(() => {
+    if (error) {
+      setSubmitting(false);
+    }
+  }, [error]);
   // TODO: add localstorage save of data, trigger on debounced onchange
 
   return (
@@ -17,6 +25,9 @@ export default function NewCase() {
       <Form
         className="w-fit grid grid-cols-[auto_auto_auto] gap-2 p-5 bg-base-100"
         method="POST"
+        onSubmit={() => {
+          setSubmitting(true);
+        }}
       >
         <SectionTitle className="col-span-3">Demographics</SectionTitle>
         <TextInputField
@@ -99,9 +110,26 @@ export default function NewCase() {
         />
         <TextInputField name="scAgency" placeholder="SC Agency" />
 
-        <button className="btn btn-soft dark:btn btn-success btn-lg col-start-3">
-          Save
+        <button
+          type="submit"
+          className="btn btn-soft dark:btn btn-success btn-lg col-start-3"
+          disabled={submitting}
+          // onClick={(e) => {
+          //   setSubmitting(true);
+          //   e.
+          // }}
+        >
+          {submitting ? (
+            <div className="loading loading-spinner"></div>
+          ) : (
+            "Save"
+          )}
         </button>
+        {error && (
+          <p className="text-error font-medium col-span-2 col-start-1">
+            {error}
+          </p>
+        )}
       </Form>
     </>
   );
