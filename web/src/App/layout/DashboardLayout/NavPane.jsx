@@ -2,6 +2,7 @@ import Exit from "@/assets/icons/Exit";
 import DarkModeToggle from "./DarkModeToggle";
 import {
   AddressBookTabsIcon,
+  BabyIcon,
   FinnTheHumanIcon,
   IdentificationCardIcon,
 } from "@phosphor-icons/react";
@@ -10,9 +11,9 @@ import NavLink from "./NavLink";
 
 const rootRoutes = [
   {
-    href: "/",
+    href: "/cases",
     name: "Cases",
-    Icon: AddressBookTabsIcon,
+    Icon: BabyIcon,
   },
   {
     href: "/providers",
@@ -23,6 +24,11 @@ const rootRoutes = [
     href: "/staff",
     name: "Staff",
     Icon: FinnTheHumanIcon,
+  },
+  {
+    href: "/directory",
+    name: "Directory",
+    Icon: AddressBookTabsIcon,
   },
 ];
 <AddressBookTabsIcon />;
