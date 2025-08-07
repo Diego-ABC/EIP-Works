@@ -45,7 +45,6 @@ const casePropertiesArray = ({
 export default function CasesList() {
   // const cases = sampleCases;
   const { cases, error } = useLoaderData();
-  console.log(cases);
   return (
     <>
       <DashboardHeader>Cases</DashboardHeader>
