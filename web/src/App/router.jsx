@@ -22,8 +22,9 @@ import defaultPageLoader from "./layout/DashboardLayout/defaultPageLoader";
 import NewCase from "./features/cases/pages/NewCase";
 import newCaseAction from "./features/cases/loadersAndActions/newCaseAction";
 import casesListLoader from "./features/cases/loadersAndActions/casesListLoader";
-import CaseDetails from "./features/cases/pages/CaseDetails";
 import caseDetailsLoader from "./features/cases/loadersAndActions/caseDetailsLoader";
+import CaseOverview from "./features/cases/pages/CaseOverview";
+import caseOverviewRedirectLoader from "./features/cases/loadersAndActions/caseOverviewRedirectLoader";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -42,9 +43,12 @@ const router = createBrowserRouter(
           <Route path="new" element={<NewCase />} action={newCaseAction} />
           <Route
             path=":caseId"
-            element={<CaseDetails />}
+            element={<CaseOverview />}
             loader={caseDetailsLoader}
-          />
+          >
+            <Route index loader={caseOverviewRedirectLoader} />
+            <Route path="*" element={<>page not implemented</>} />
+          </Route>
         </Route>
         <Route path="staff">
           <Route index element={<StaffList />} />
