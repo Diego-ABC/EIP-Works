@@ -26,6 +26,8 @@ import caseDetailsLoader from "./features/cases/loadersAndActions/caseDetailsLoa
 import CaseOverview from "./features/cases/pages/CaseOverview";
 import caseOverviewRedirectLoader from "./features/cases/loadersAndActions/caseOverviewRedirectLoader";
 import CaseProfile from "./features/cases/pages/CaseProfile";
+import CaseAuthorizations from "./features/cases/pages/CaseAuthorizations";
+import caseAuthorizationsLoader from "./features/cases/loadersAndActions/caseAuthorizationsLoader";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -49,6 +51,11 @@ const router = createBrowserRouter(
           >
             <Route index loader={caseOverviewRedirectLoader} />
             <Route path="profile" element={<CaseProfile />} />
+            <Route
+              path="authorizations"
+              element={<CaseAuthorizations />}
+              loader={caseAuthorizationsLoader}
+            />
             <Route path="*" element={<>page not implemented</>} />
           </Route>
         </Route>
