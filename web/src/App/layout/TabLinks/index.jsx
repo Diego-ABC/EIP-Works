@@ -11,7 +11,7 @@ export default function TabLinks({ className, links = [] }) {
             key={href}
             to={href}
             className={({ isActive }) =>
-              "grow border-black dark:border-white first:border-l-2 border-t-2 justify-center flex flex-row px-4 font-medium group-first:border-l-2" +
+              "grow border-black dark:border-white first:border-l-2 border-t-2 justify-center flex flex-row px-4 font-medium group-first:border-l-2 w-36" +
               (isActive
                 ? " border-b-0 pb-3 pt-3 border-l-2 border-r-2"
                 : " bg-primary/20 dark:bg-primary py-2 border-b-2 border-r-2 [&:has(+*.pt-3)]:border-r-0")
