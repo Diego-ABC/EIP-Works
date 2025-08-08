@@ -23,12 +23,12 @@ export default function GridTableRow({
     className,
     defaultTableRowClass,
     linkTo ? linkRowClass : "cursor-default",
-    whiteListColSpan[children.length - 1]
+    whiteListColSpan[children?.length - 1 ?? 0]
   );
 
   return (
     <Link to={linkTo} className={rowClass}>
-      {children.map((child, i) =>
+      {children?.map((child, i) =>
         typeof child === "string" ? (
           <GridTableCell key={i}>{child}</GridTableCell>
         ) : typeof child === "object" ? (
