@@ -9,6 +9,8 @@ export default function TextInputField({
   leftIcon,
   rightIcon,
   required = false,
+  min,
+  max,
   onChange = () => {},
   // value = undefined,
 }) {
@@ -26,6 +28,8 @@ export default function TextInputField({
         required={required}
         onChange={onChange}
         // value={value}
+        min={min}
+        max={max}
       />
       {rightIcon}
       {label && labelRight && <span className="label">{label}</span>}
