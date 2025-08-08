@@ -25,6 +25,7 @@ import casesListLoader from "./features/cases/loadersAndActions/casesListLoader"
 import caseDetailsLoader from "./features/cases/loadersAndActions/caseDetailsLoader";
 import CaseOverview from "./features/cases/pages/CaseOverview";
 import caseOverviewRedirectLoader from "./features/cases/loadersAndActions/caseOverviewRedirectLoader";
+import CaseProfile from "./features/cases/pages/CaseProfile";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -47,6 +48,7 @@ const router = createBrowserRouter(
             loader={caseDetailsLoader}
           >
             <Route index loader={caseOverviewRedirectLoader} />
+            <Route path="profile" element={<CaseProfile />} />
             <Route path="*" element={<>page not implemented</>} />
           </Route>
         </Route>
