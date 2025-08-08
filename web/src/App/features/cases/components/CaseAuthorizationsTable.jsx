@@ -21,26 +21,6 @@ const authProperties = ({
     providerName,
   ],
 });
-// utility for case -> gridtable format
-const casePropertiesArray = ({
-  id,
-  firstName,
-  lastName,
-  dob,
-  eiNumber,
-  auths = [],
-}) => {
-  return {
-    href: `/cases/${id}`,
-    className: "",
-    content: [
-      firstName + " " + lastName,
-      { className: "bg-success/20 dark:bg-success/50", content: dob },
-      eiNumber,
-      auths.join(", "),
-    ],
-  };
-};
 
 export default function CaseAuthorizationsTable({ auths = [] }) {
   const headers = [
