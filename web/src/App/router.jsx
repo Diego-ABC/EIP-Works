@@ -32,6 +32,7 @@ import NewAuth from "./features/cases/pages/NewAuth";
 import newAuthAction from "./features/cases/loadersAndActions/newAuthActions";
 import AuthDetailsPage from "./features/cases/pages/AuthDetailsPage";
 import authDetailsLoader from "./features/cases/loadersAndActions/authDetailsLoader";
+import CaseDocuments from "./features/cases/pages/CaseDocuments";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -68,6 +69,7 @@ const router = createBrowserRouter(
                 loader={authDetailsLoader}
               />
             </Route>
+            <Route path="documents" element={<CaseDocuments />} />
             <Route path="*" element={<>page not implemented</>} />
           </Route>
         </Route>
