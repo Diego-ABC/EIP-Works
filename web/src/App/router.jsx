@@ -28,6 +28,10 @@ import caseOverviewRedirectLoader from "./features/cases/loadersAndActions/caseO
 import CaseProfile from "./features/cases/pages/CaseProfile";
 import CaseAuthorizations from "./features/cases/pages/CaseAuthorizations";
 import caseAuthorizationsLoader from "./features/cases/loadersAndActions/caseAuthorizationsLoader";
+import NewAuth from "./features/cases/pages/NewAuth";
+import newAuthAction from "./features/cases/loadersAndActions/newAuthActions";
+import AuthDetailsPage from "./features/cases/pages/AuthDetailsPage";
+import authDetailsLoader from "./features/cases/loadersAndActions/authDetailsLoader";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -51,11 +55,19 @@ const router = createBrowserRouter(
           >
             <Route index loader={caseOverviewRedirectLoader} />
             <Route path="profile" element={<CaseProfile />} />
-            <Route
-              path="authorizations"
-              element={<CaseAuthorizations />}
-              loader={caseAuthorizationsLoader}
-            />
+            <Route path="authorizations">
+              <Route
+                index
+                element={<CaseAuthorizations />}
+                loader={caseAuthorizationsLoader}
+              />
+              <Route path="new" element={<NewAuth />} action={newAuthAction} />
+              <Route
+                path=":authId"
+                element={<AuthDetailsPage />}
+                loader={authDetailsLoader}
+              />
+            </Route>
             <Route path="*" element={<>page not implemented</>} />
           </Route>
         </Route>
