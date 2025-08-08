@@ -5,7 +5,15 @@ import {
   CaretLineDownIcon,
   TriangleIcon,
 } from "@phosphor-icons/react";
-export default function SearchableDropDown({ options, name, placeholder }) {
+export default function SearchableDropDown({
+  options,
+  name,
+  placeholder,
+  leftLabel,
+  rightLabel,
+  className,
+  required,
+}) {
   const [inputValue, setInputValue] = useState("");
   // const [open, setOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -41,8 +49,15 @@ export default function SearchableDropDown({ options, name, placeholder }) {
   };
 
   return (
-    <div className="dropdown w-full">
-      <div className={textFieldStyle}>
+    <div className={"dropdown " + className}>
+      <label
+        className={
+          textFieldStyle +
+          " w-full " +
+          (required ? "[&:has(input:invalid)]:border-b-red-500" : "")
+        }
+      >
+        {leftLabel && <span className="label">{leftLabel}</span>}
         <input
           type="text"
           tabIndex={0}
@@ -52,6 +67,7 @@ export default function SearchableDropDown({ options, name, placeholder }) {
           autoComplete="off"
           // className="input input-bordered w-full"
           // className={textFieldStyle}
+          required={required}
           onKeyDown={handleKeyDown}
           onChange={(e) => {
             setInputValue(e.target.value);
@@ -63,8 +79,9 @@ export default function SearchableDropDown({ options, name, placeholder }) {
           }}
           onBlur={() => setTimeout(() => setOpen(false), 100)} // Delay so clicks register
         />
-        <CaretLineDownIcon weight="fill" />
-      </div>
+        <CaretLineDownIcon width={"2rem"} weight="fill" />
+        {rightLabel && <span className="label">{rightLabel}</span>}
+      </label>
       {open && filtered.length > 0 && (
         <div className="dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-full max-h-60 overflow-auto flex flex-col gap-1">
           {filtered.map((item, idx) => (
