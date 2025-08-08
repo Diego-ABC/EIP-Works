@@ -3,7 +3,6 @@ import { useCase } from "../context/caseContext";
 
 export default function CaseProfile() {
   const { eiCase } = useCase();
-  console.log(eiCase);
   return (
     <div className="grid grid-cols-[auto_auto] w-fit p-3">
       {Object.entries(eiCase).map(([id, value]) => (

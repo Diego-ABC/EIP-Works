@@ -29,7 +29,9 @@ export default function CaseOverview() {
       </DashboardHeader>
       <CaseDetails />
       <TabLinks className="mt-3" links={subpageLinks} />
-      <Outlet />
+      <div className="py-5">
+        <Outlet />
+      </div>
     </CaseProvider>
   );
 }
