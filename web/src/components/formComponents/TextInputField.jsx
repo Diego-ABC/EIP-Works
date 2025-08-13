@@ -12,6 +12,8 @@ export default function TextInputField({
   min,
   max,
   onChange = () => {},
+  disabled = false,
+  defaultValue = undefined,
   // value = undefined,
 }) {
   // if (label) return <label></label>
@@ -30,6 +32,8 @@ export default function TextInputField({
         // value={value}
         min={min}
         max={max}
+        disabled={disabled}
+        defaultValue={defaultValue}
       />
       {rightIcon}
       {label && labelRight && <span className="label">{label}</span>}
