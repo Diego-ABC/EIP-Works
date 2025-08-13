@@ -14,7 +14,7 @@ const authProperties = ({
   href: "./" + id,
   content: [
     type,
-    `${frequency}x${length}, ${period}`,
+    `${frequency}x${length}, ${period}ly`,
     startDate,
     endDate,
     authNumber,
