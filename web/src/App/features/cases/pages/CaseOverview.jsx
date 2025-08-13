@@ -21,6 +21,10 @@ export default function CaseOverview() {
       href: "documents",
       name: "Documents",
     },
+    {
+      href: "notes",
+      name: "Notes",
+    },
   ];
   return (
     <CaseProvider initialCase={eiCase}>
