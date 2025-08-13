@@ -33,6 +33,9 @@ import newAuthAction from "./features/cases/loadersAndActions/newAuthActions";
 import AuthDetailsPage from "./features/cases/pages/AuthDetailsPage";
 import authDetailsLoader from "./features/cases/loadersAndActions/authDetailsLoader";
 import CaseDocuments from "./features/cases/pages/CaseDocuments";
+import NewCaseDocument from "./features/cases/pages/NewCaseDocument";
+import newDocAction from "./features/cases/loadersAndActions/newDocAction";
+import caseDocsLoader from "./features/cases/loadersAndActions/caseDocsLoader";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -69,7 +72,19 @@ const router = createBrowserRouter(
                 loader={authDetailsLoader}
               />
             </Route>
-            <Route path="documents" element={<CaseDocuments />} />
+            {/* TODO: have /documents/new as an outlet through a modal under /documents*/}
+            <Route path="documents">
+              <Route
+                index
+                element={<CaseDocuments />}
+                loader={caseDocsLoader}
+              />
+              <Route
+                path="new"
+                element={<NewCaseDocument />}
+                action={newDocAction}
+              />
+            </Route>
             <Route path="*" element={<>page not implemented</>} />
           </Route>
         </Route>
