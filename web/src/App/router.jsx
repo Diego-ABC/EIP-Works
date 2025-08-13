@@ -36,6 +36,7 @@ import CaseDocuments from "./features/cases/pages/CaseDocuments";
 import NewCaseDocument from "./features/cases/pages/NewCaseDocument";
 import newDocAction from "./features/cases/loadersAndActions/newDocAction";
 import caseDocsLoader from "./features/cases/loadersAndActions/caseDocsLoader";
+import CaseNotes from "./features/cases/subfeatures/caseNotes/pages/CaseNotes";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -85,6 +86,7 @@ const router = createBrowserRouter(
                 action={newDocAction}
               />
             </Route>
+            <Route path="notes" element={<CaseNotes />} />
             <Route path="*" element={<>page not implemented</>} />
           </Route>
         </Route>
