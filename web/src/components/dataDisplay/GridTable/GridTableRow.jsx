@@ -1,6 +1,7 @@
 import classMerge from "@/lib/utils/stylings/classMerge";
 import GridTableCell from "./GridTableCell";
 import { Link } from "react-router";
+import { isValidElement } from "react";
 
 const whiteListColSpan = [
   "col-span-1",
@@ -14,6 +15,11 @@ const whiteListColSpan = [
 ];
 const defaultTableRowClass = "grid grid-cols-subgrid";
 const linkRowClass = "hover:bg-black/20 hover:dark:bg-white/10";
+
+const BasicRow = ({ children, className = "" }) => (
+  <div className={className}>{children}</div>
+);
+
 export default function GridTableRow({
   linkTo = "",
   children,
@@ -23,22 +29,24 @@ export default function GridTableRow({
     className,
     defaultTableRowClass,
     linkTo ? linkRowClass : "cursor-default",
-    whiteListColSpan[children?.length - 1 ?? 0]
+    whiteListColSpan[children?.length ? children.length - 1 : 0]
   );
 
+  const RowEl = linkTo ? Link : BasicRow;
+
   return (
-    <Link to={linkTo} className={rowClass}>
+    <RowEl to={linkTo} className={rowClass}>
       {children?.map((child, i) =>
         typeof child === "string" ? (
           <GridTableCell key={i}>{child}</GridTableCell>
-        ) : typeof child === "object" ? (
+        ) : isValidElement(child) ? (
+          child
+        ) : (
           <GridTableCell key={i} className={child.className}>
             {child.content}
           </GridTableCell>
-        ) : (
-          child
         )
       )}
-    </Link>
+    </RowEl>
   );
 }
