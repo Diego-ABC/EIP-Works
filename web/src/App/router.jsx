@@ -37,6 +37,8 @@ import NewCaseDocument from "./features/cases/pages/NewCaseDocument";
 import newDocAction from "./features/cases/loadersAndActions/newDocAction";
 import caseDocsLoader from "./features/cases/loadersAndActions/caseDocsLoader";
 import CaseNotes from "./features/cases/subfeatures/caseNotes/pages/CaseNotes";
+import newNoteAction from "./features/cases/subfeatures/caseNotes/loadersAndActions/newNoteAction";
+import caseNotesLoader from "./features/cases/subfeatures/caseNotes/loadersAndActions/caseNotesLoader";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -86,7 +88,12 @@ const router = createBrowserRouter(
                 action={newDocAction}
               />
             </Route>
-            <Route path="notes" element={<CaseNotes />} />
+            <Route
+              path="notes"
+              element={<CaseNotes />}
+              action={newNoteAction}
+              loader={caseNotesLoader}
+            />
             <Route path="*" element={<>page not implemented</>} />
           </Route>
         </Route>
@@ -112,6 +119,7 @@ const router = createBrowserRouter(
         loader={inviteCodeLoader}
         action={inviteSetPasswordAction}
         element={<InviteAccept />}
+        errorElement={<>error</>}
       />
       <Route path="badinvite" element={<BadInviteCode />} />
     </Route>

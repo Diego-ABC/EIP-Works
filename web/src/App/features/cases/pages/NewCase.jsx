@@ -21,7 +21,7 @@ export default function NewCase() {
 
   return (
     <>
-      <DashboardHeader>Staff {">"} New</DashboardHeader>
+      <DashboardHeader>Cases {">"} New</DashboardHeader>
       <Form
         className="w-fit grid grid-cols-[auto_auto_auto] gap-2 p-5 bg-base-100"
         method="POST"

@@ -1,4 +1,4 @@
-import getCaseAuthorizations from "../../staff/services/getCaseAuthorizations";
+import getCaseAuthorizations from "../services/getCaseAuthorizations";
 
 export default async function caseAuthorizationsLoader({ params }) {
   try {
