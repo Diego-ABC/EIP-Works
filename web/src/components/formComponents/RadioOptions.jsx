@@ -1,11 +1,17 @@
 import classMerge from "@/lib/utils/stylings/classMerge";
 
-export default function RadioOptions({ className, name, label, options = [] }) {
+export default function RadioOptions({
+  className,
+  name,
+  label,
+  options = [],
+  defaultValue,
+}) {
   return (
     <div
       className={classMerge(
         className,
-        "px-4 rounded-lg bg-base-200 flex flex-row items-center gap-4"
+        " rounded-lg bg-base-200 flex flex-row items-center"
       )}
     >
       <p className="font-medium">{label}</p>
@@ -16,6 +22,7 @@ export default function RadioOptions({ className, name, label, options = [] }) {
             className="radio radio-sm checked:radio-success peer"
             name={name}
             value={option}
+            defaultChecked={defaultValue == option}
           />
           <span className="peer-checked:text-success transition-colors cursor-pointer">
             {option}
