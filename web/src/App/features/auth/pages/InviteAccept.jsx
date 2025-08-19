@@ -29,14 +29,23 @@ export default function InviteAccept() {
     }
   }, [staffId]);
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   if (checkingCode) return null;
   if (!validCode) return <Navigate to="/badinvite" />;
-  if (loadingStaffData) return null;
+  if (loadingStaffData) return <>loading staff data</>;
 
   const { firstName, email: sEmail } = staffData;
+
   return (
     <div className="h-dvh w-dvw bg-base-300 flex justify-center items-center">
-      <Form method="POST" className="card card-xl rounded bg-base-100">
+      <Form
+        method="POST"
+        className="card card-xl rounded bg-base-100"
+        onSubmit={() => {
+          setIsSubmitting(true);
+        }}
+      >
         <div className="card-title border-b-2 border-dashed border-base-300 px-5 py-2.5 justify-center">
           Hi {firstName}!
         </div>
@@ -55,7 +64,11 @@ export default function InviteAccept() {
               use this email and
               <br /> password when logging in
             </p>
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={isSubmitting}
+            >
               Submit
             </button>
           </div>
