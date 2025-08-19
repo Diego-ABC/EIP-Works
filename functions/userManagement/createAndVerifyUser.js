@@ -16,12 +16,13 @@ export const createAndVerifyUser = onCall(
     const inviteSnapshot = await inviteRef.get();
     if (!inviteSnapshot.exists) throw new HttpsError("invalid-argument", "");
 
-    const { email, staffId } = inviteSnapshot.data();
+    const { email, staffId, userName } = inviteSnapshot.data();
     await getAuth().createUser({
       uid: staffId,
       email,
       password,
       emailVerified: true,
+      displayName: userName,
     });
 
     const staffRef = db.doc("staff/" + staffId);
