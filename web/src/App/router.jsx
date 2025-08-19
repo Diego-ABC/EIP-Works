@@ -39,6 +39,7 @@ import caseDocsLoader from "./features/cases/loadersAndActions/caseDocsLoader";
 import CaseNotes from "./features/cases/subfeatures/caseNotes/pages/CaseNotes";
 import newNoteAction from "./features/cases/subfeatures/caseNotes/loadersAndActions/newNoteAction";
 import caseNotesLoader from "./features/cases/subfeatures/caseNotes/loadersAndActions/caseNotesLoader";
+import saveCaseEditAction from "./features/cases/subfeatures/caseProfile/loadersAndActions/saveCaseEditAction";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -61,7 +62,11 @@ const router = createBrowserRouter(
             loader={caseDetailsLoader}
           >
             <Route index loader={caseOverviewRedirectLoader} />
-            <Route path="profile" element={<CaseProfile />} />
+            <Route
+              path="profile"
+              element={<CaseProfile />}
+              action={saveCaseEditAction}
+            />
             <Route path="authorizations">
               <Route
                 index
