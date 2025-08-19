@@ -37,7 +37,11 @@ export const sendInviteEmail = onCall(
           transaction.delete(oldInviteRef);
         }
 
-        transaction.set(newInviteRef, { email, staffId });
+        transaction.set(newInviteRef, {
+          email,
+          staffId,
+          userName: firstName + " " + lastName,
+        });
         transaction.update(staffObjRef, { inviteCode: newInviteCode });
       });
     } catch (err) {
