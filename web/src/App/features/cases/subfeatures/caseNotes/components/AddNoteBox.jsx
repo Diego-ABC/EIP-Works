@@ -52,6 +52,7 @@ export default function AddNoteRow({ action = "", onNewNote = () => {} }) {
           placeholder="Note"
           className="w-full"
           required={error}
+          autoComplete={false}
         />
         <SearchableDropDown
           options={NoteTypes}
@@ -61,7 +62,7 @@ export default function AddNoteRow({ action = "", onNewNote = () => {} }) {
           required={error}
         />
         <button
-          className="btn btn-lg btn-success dark:btn-soft self-center"
+          className="btn  btn-success dark:btn-soft self-center"
           disabled={!readyToSubmit}
         >
           {isSubmitting ? (
