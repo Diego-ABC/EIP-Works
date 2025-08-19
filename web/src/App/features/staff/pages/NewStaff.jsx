@@ -1,6 +1,7 @@
 import TextInputField from "@/components/formComponents/TextInputField";
 import StaffListHeader from "../components/StaffListHeader";
 import { Form, useActionData } from "react-router";
+import formatPhoneNumber from "@/lib/utils/formatting/formatPhoneNumber";
 
 export default function NewStaff() {
   const { error, success, link } = useActionData() || {};
@@ -30,11 +31,13 @@ export default function NewStaff() {
           name="cell"
           placeholder="mobile number"
           className="col-span-4 w-full"
+          onInput={(e) => (e.target.value = formatPhoneNumber(e.target.value))}
         />
         <TextInputField
           name="work"
           placeholder="work number"
           className="col-span-3 w-full"
+          onInput={(e) => (e.target.value = formatPhoneNumber(e.target.value))}
         />
         <TextInputField
           name="workExt"
