@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import textFieldStyle from "./textFieldStyle";
 import {
   ArrowDownIcon,
@@ -13,12 +13,14 @@ export default function SearchableDropDown({
   rightLabel,
   className,
   required,
+  defaultValue,
+  onSelectedIndex = () => {},
 }) {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(defaultValue || "");
   // const [open, setOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [open, setOpen] = useState(false);
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
   // const [filtered, setFiltered] = useState(options);
   const filtered = options.filter((opt) =>
     opt.toLowerCase().includes(inputValue.toLowerCase())
@@ -48,11 +50,16 @@ export default function SearchableDropDown({
     }
   };
 
+  useEffect(() => {
+    if (selectedIndex >= 0) onSelectedIndex(selectedIndex);
+  }, [selectedIndex]);
+
   return (
     <div className={"dropdown " + className}>
       <label
         className={
           textFieldStyle +
+          className +
           " w-full " +
           (required ? "[&:has(input:invalid)]:border-b-red-500" : "")
         }
@@ -90,8 +97,10 @@ export default function SearchableDropDown({
               type="button"
               onMouseDown={() => handleSelect(item)}
               onMouseOver={() => setSelectedIndex(idx)}
-              className={`btn btn-ghost justify-start font-medium ${
-                idx === selectedIndex ? "bg-primary text-primary-content" : ""
+              className={`btn btn-ghost justify-start font-medium text-left transition-none ${
+                idx === selectedIndex
+                  ? "bg-primary/20 dark:bg-primary text-primary dark:text-primary-content border-black dark:border-white"
+                  : ""
               }`}
             >
               {item}
