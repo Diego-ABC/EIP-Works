@@ -32,7 +32,7 @@ import NewAuth from "./features/cases/pages/NewAuth";
 import newAuthAction from "./features/cases/loadersAndActions/newAuthActions";
 import AuthDetailsPage from "./features/cases/pages/AuthDetailsPage";
 import authDetailsLoader from "./features/cases/loadersAndActions/authDetailsLoader";
-import CaseDocuments from "./features/cases/pages/CaseDocuments";
+import CaseDocuments from "./features/cases/subfeatures/caseDocuments/pages/CaseDocuments";
 import NewCaseDocument from "./features/cases/pages/NewCaseDocument";
 import newDocAction from "./features/cases/loadersAndActions/newDocAction";
 import caseDocsLoader from "./features/cases/loadersAndActions/caseDocsLoader";
@@ -40,6 +40,9 @@ import CaseNotes from "./features/cases/subfeatures/caseNotes/pages/CaseNotes";
 import newNoteAction from "./features/cases/subfeatures/caseNotes/loadersAndActions/newNoteAction";
 import caseNotesLoader from "./features/cases/subfeatures/caseNotes/loadersAndActions/caseNotesLoader";
 import saveCaseEditAction from "./features/cases/subfeatures/caseProfile/loadersAndActions/saveCaseEditAction";
+import NotionFeatureForm from "./features/feedback/pages/NotionFeatureForm";
+import FeedbackMainPage from "./features/feedback/pages/FeedbackMainPage";
+import BugReportForm from "./features/feedback/pages/BugReportForm";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -110,6 +113,11 @@ const router = createBrowserRouter(
             element={<StaffDetail />}
             loader={staffMemberLoader}
           />
+        </Route>
+        <Route path="feedback">
+          <Route index element={<FeedbackMainPage />} />
+          <Route path="bug-report" element={<BugReportForm />} />
+          <Route path="feature-request" element={<NotionFeatureForm />} />
         </Route>
         <Route path="*" element={<>Sorry this page doesn't exist yet</>} />
       </Route>
