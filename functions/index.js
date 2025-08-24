@@ -15,6 +15,7 @@ import { initializeApp } from "firebase-admin/app";
 initializeApp();
 export { createAndVerifyUser } from "./userManagement/createAndVerifyUser.js";
 export { sendInviteEmail } from "./userManagement/sendInviteEmail.js";
+export { validateInviteCode } from "./userManagement/validateInviteCode.js";
 // const logger
 
 // export { sendTestEmail } from "./mailgun/sendTestEmail.js";

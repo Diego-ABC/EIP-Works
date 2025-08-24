@@ -7,8 +7,8 @@ const MAILERSEND_SEND_KEY = defineSecret("MAILERSEND_SEND_KEY");
 export const createAndVerifyUser = onCall(
   { secrets: [MAILERSEND_SEND_KEY] },
   async ({ data, auth }) => {
-    if (!auth)
-      throw new HttpsError("unauthenticated", "User must be signed in");
+    // if (!auth)
+    //   throw new HttpsError("unauthenticated", "User must be signed in");
     const { inviteCode, password } = data;
 
     const db = getFirestore();
