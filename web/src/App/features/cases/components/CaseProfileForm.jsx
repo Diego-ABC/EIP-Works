@@ -4,6 +4,7 @@ import RadioOptions from "@/components/formComponents/RadioOptions";
 import SearchableDropDown from "@/components/formComponents/SearchableDropDown";
 import formatPhoneNumber from "@/lib/utils/formatting/formatPhoneNumber";
 import { Form } from "react-router";
+import DateField from "@/components/formComponents/DateField";
 
 export default function CaseProfileForm({
   patient,
@@ -57,12 +58,18 @@ export default function CaseProfileForm({
         defaultValue={lastName}
         required
       />
-      <TextInputField
+      {/* <TextInputField
         type="date"
         name="dob"
         label="date of birth"
         defaultValue={dob}
         className="px-1.5 input-sm @lg:px-3 @lg:input-md"
+      /> */}
+      <DateField
+        label="date of birth"
+        name="dob"
+        defaultValue={dob}
+        className="px-1.5 @lg:px-3 input-sm @lg:input-md max-w-full"
       />
       <TextInputField
         type="text"
@@ -157,12 +164,18 @@ export default function CaseProfileForm({
         required
         defaultValue={eiNumber}
       />
-      <TextInputField
+      {/* <TextInputField
         type="date"
         name="referralDate"
         label="referral date"
         className="px-1.5 input-sm @lg:px-3 @lg:input-md"
         defaultValue={referralDate}
+      /> */}
+      <DateField
+        label="date of birth"
+        name="referralDate"
+        defaultValue={referralDate}
+        className="px-1.5 @lg:px-3 input-sm @lg:input-md max-w-full"
       />
       <SearchableDropDown
         placeholder="Stage"
@@ -192,14 +205,12 @@ export default function CaseProfileForm({
         className=" input-sm @lg:input-md"
         defaultValue={scAgency}
       />
+
+      <TextInputField name="scEmail" placeholder="SC Email" />
       <button
         type="submit"
-        className="btn btn-outline dark:btn-soft btn-success btn-lg col-span-full @lg:col-span-full col-start-1"
+        className="btn btn-outline dark:btn-soft btn-success -col-start-2"
         disabled={submitting || !canSave}
-        // onClick={(e) => {
-        //   setSubmitting(true);
-        //   e.
-        // }}
       >
         {submitting ? <div className="loading loading-spinner"></div> : "Save"}
       </button>
