@@ -1,39 +1,21 @@
-import { useEffect, useState } from "react";
-import { Form, Navigate, useActionData, useLoaderData } from "react-router";
-import checkValidStaffInvite from "../services/checkValidStaffInvite";
-import getStaffMember from "../../staff/services/getStaffMember";
+import { useState } from "react";
+import { Form, Navigate, useActionData } from "react-router";
 import TextInputField from "@/components/formComponents/TextInputField";
+import useInviteCode from "../hooks/useInviteCode";
 
 export default function InviteAccept() {
   const { error } = useActionData() || {};
-  const { inviteCode } = useLoaderData();
-  const [checkingCode, setCheckingCode] = useState(true);
-  const [validCode, setValidCode] = useState(false);
-
-  const { email, staffId } = validCode;
-  const [staffData, setStaffData] = useState({});
-  const [loadingStaffData, setLoadingStaffData] = useState(true);
-  useEffect(() => {
-    checkValidStaffInvite(inviteCode).then((isValid) => {
-      setCheckingCode(false);
-      setValidCode(isValid);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (staffId) {
-      getStaffMember(staffId).then((staffData) => {
-        setStaffData(staffData);
-        setLoadingStaffData(false);
-      });
-    }
-  }, [staffId]);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const {
+    checkingCode,
+    validCode,
+    staffData,
+    error: invError,
+  } = useInviteCode();
 
-  if (checkingCode) return null;
+  if (error) console.log(error);
   if (!validCode) return <Navigate to="/badinvite" />;
-  if (loadingStaffData) return <>loading staff data</>;
 
   const { firstName, email: sEmail } = staffData;
 
