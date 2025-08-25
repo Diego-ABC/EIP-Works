@@ -2,6 +2,8 @@ import DashboardHeader from "@/App/layout/DashboardLayout/DashboardPage/Dashboar
 import CasesListTable from "../components/CasesListTable";
 import AddLinkbutton from "@/components/buttons/AddLinkButton";
 import { useLoaderData } from "react-router";
+import TextInputField from "@/components/formComponents/TextInputField";
+import { useEffect, useState } from "react";
 
 const sampleCases = [
   {
@@ -42,13 +44,71 @@ const casePropertiesArray = ({
     ],
   };
 };
+
+/**
+ * Helper function for taking in a string, object, or array,
+ * and recursively checking for if a bit of text is present
+ * anywhere inside
+ *
+ * @param {string|Array|Object} object
+ * @param {string} text
+ * @returns {boolean}
+ */
+function objectHasText(object, text) {
+  if (!object) return false;
+  if (typeof object === "string")
+    return object.toLowerCase().includes(text.toLowerCase());
+  if (Array.isArray(object))
+    return object.some((item) => objectHasText(item, text));
+
+  if (typeof object === "object")
+    return Object.values(object).some((propVal) =>
+      objectHasText(propVal, text)
+    );
+  return false;
+}
+
 export default function CasesList() {
-  // const cases = sampleCases;
-  const { cases, error } = useLoaderData();
+  const { cases: initialCases, error } = useLoaderData();
+  const [cases, setCases] = useState(initialCases);
+  const [filterText, setFilterText] = useState("");
+
+  const handleFilter = (e) => {
+    setFilterText(e.target.value);
+  };
+
+  useEffect(() => {
+    if (filterText) {
+      setCases(
+        initialCases.filter(
+          ({ firstName, lastName, dob, eiNumber, authorizations }) =>
+            objectHasText(
+              { firstName, lastName, dob, eiNumber, authorizations },
+              filterText
+            )
+        )
+      );
+      return;
+    }
+    setCases(initialCases);
+  }, [filterText]);
+
   return (
     <>
       <DashboardHeader>Cases</DashboardHeader>
-      <AddLinkbutton href="/cases/new" />
+      <div className="flex flex-row gap-5">
+        <AddLinkbutton href="/cases/new" />
+        {/* <div className="join"> */}
+        <TextInputField
+          placeholder="global filter"
+          onChange={handleFilter}
+          className="join-item"
+        />
+        {/* <button className="btn btn-outline btn-success join-item">
+            Search
+          </button>
+        </div> */}
+      </div>
       {error && <p className="font-medium text-error">{error}</p>}
       <CasesListTable
         headers={["Name", "Date of Birth", "EI #", "Authorizations"]}
