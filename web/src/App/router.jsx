@@ -43,6 +43,7 @@ import saveCaseEditAction from "./features/cases/subfeatures/caseProfile/loaders
 import NotionFeatureForm from "./features/feedback/pages/NotionFeatureForm";
 import FeedbackMainPage from "./features/feedback/pages/FeedbackMainPage";
 import BugReportForm from "./features/feedback/pages/BugReportForm";
+import ProviderList from "./features/providers/pages/ProviderList";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -113,6 +114,9 @@ const router = createBrowserRouter(
             element={<StaffDetail />}
             loader={staffMemberLoader}
           />
+        </Route>
+        <Route path="providers">
+          <Route index element={<ProviderList />} />
         </Route>
         <Route path="feedback">
           <Route index element={<FeedbackMainPage />} />
