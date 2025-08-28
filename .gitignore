@@ -70,3 +70,6 @@ node_modules/
 
 # emulator data
 emulator-data/
+web/src/App/features/staff/services/sendTestEmail.js
+functions/mailgun/sendTestEmail.js
+functions/mailersend/sendTestEmail.js
