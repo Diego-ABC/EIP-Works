@@ -68,7 +68,7 @@ import classMerge from "@/lib/utils/stylings/classMerge";
 
 export default function DateField({ label, name, className }) {
   return (
-    <DatePicker name={name}>
+    <DatePicker name={name} aria-label={label}>
       {/* <Label>Date</Label> */}
       <Group
         className={classMerge(textFieldStyle, className, "floating-label")}
