@@ -43,7 +43,7 @@ import saveCaseEditAction from "./features/cases/subfeatures/caseProfile/loaders
 import NotionFeatureForm from "./features/feedback/pages/NotionFeatureForm";
 import FeedbackMainPage from "./features/feedback/pages/FeedbackMainPage";
 import BugReportForm from "./features/feedback/pages/BugReportForm";
-import ProviderList from "./features/providers/pages/ProviderList";
+import ProviderList from "./features/providers/pages/ProviderListPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
