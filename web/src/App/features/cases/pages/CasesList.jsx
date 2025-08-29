@@ -98,16 +98,11 @@ export default function CasesList() {
       <DashboardHeader>Cases</DashboardHeader>
       <div className="flex flex-row gap-5">
         <AddLinkbutton href="/cases/new" />
-        {/* <div className="join"> */}
         <TextInputField
           placeholder="global filter"
           onChange={handleFilter}
           className="join-item"
         />
-        {/* <button className="btn btn-outline btn-success join-item">
-            Search
-          </button>
-        </div> */}
       </div>
       {error && <p className="font-medium text-error">{error}</p>}
       <CasesListTable
