@@ -4,7 +4,6 @@ import TextInputField from "@/components/formComponents/TextInputField";
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 import ProvidersList from "../components/ProvidersList";
-import MultiTagInput from "@/components/formComponents/MultiTagInput";
 
 export default function ProviderListPage() {
   const { providers: initialProviders, error } = useLoaderData() || {};
@@ -36,34 +35,11 @@ export default function ProviderListPage() {
       <DashboardHeader>Providers</DashboardHeader>
 
       <div className="flex flex-row gap-5">
-        <AddLinkbutton href="/cases/new" />
-        <TextInputField
-          placeholder="global filter"
-          onChange={handleFilter}
-          className="join-item"
-        />
+        <AddLinkbutton href="/providers/new" />
+        <TextInputField placeholder="global filter" onChange={handleFilter} />
       </div>
       {error && <p className="font-medium text-error">{error}</p>}
-      <form action="" id="test">
-        <MultiTagInput
-          label="test"
-          suggestions={[
-            "SI",
-            "ST",
-            "OT",
-            "ABA",
-            "Service Coordination",
-            "PT",
-            "Family Training",
-          ]}
-          name="services"
-        />
-      </form>
       <ProvidersList headers={["Provider", "Phone", "Email", "Services"]} />
-      {/* <CasesListTable
-              headers={["Name", "Date of Birth", "EI #", "Authorizations"]}
-              cases={cases.map((eiCase) => casePropertiesArray(eiCase))}
-            /> */}
     </>
   );
 }
