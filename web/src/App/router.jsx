@@ -44,6 +44,7 @@ import NotionFeatureForm from "./features/feedback/pages/NotionFeatureForm";
 import FeedbackMainPage from "./features/feedback/pages/FeedbackMainPage";
 import BugReportForm from "./features/feedback/pages/BugReportForm";
 import ProviderList from "./features/providers/pages/ProviderListPage";
+import NewProviderPage from "./features/providers/pages/NewProviderPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -117,6 +118,7 @@ const router = createBrowserRouter(
         </Route>
         <Route path="providers">
           <Route index element={<ProviderList />} />
+          <Route path="new" element={<NewProviderPage />} />
         </Route>
         <Route path="feedback">
           <Route index element={<FeedbackMainPage />} />
