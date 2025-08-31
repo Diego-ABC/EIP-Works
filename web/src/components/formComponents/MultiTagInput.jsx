@@ -93,10 +93,13 @@ export default function MultiTagInput({
   }
 
   return (
-    <div className={"dropdown h-fit " + containerClassName}>
+    <div
+      className={"dropdown min-h-fit " + containerClassName}
+      onClick={() => inputRef.current?.focus()}
+    >
       <div
         className={
-          "flex flex-row flex-wrap items-center gap-1 p-2 w-full h-fit " +
+          "flex flex-row flex-wrap items-center gap-1 p-2 w-full min-h-fit " +
           textFieldStyle
         }
       >
@@ -117,7 +120,11 @@ export default function MultiTagInput({
             </button>
           </span>
         ))}
-        <input {...inputProps} ref={inputRef} className="w-auto" />
+        <input
+          {...inputProps}
+          ref={inputRef}
+          className="w-auto min-w-16 basis-0 grow"
+        />
       </div>
 
       {/* hidden input so it works with HTML forms / Firestore */}
