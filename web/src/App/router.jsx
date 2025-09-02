@@ -46,6 +46,10 @@ import BugReportForm from "./features/feedback/pages/BugReportForm";
 import ProviderList from "./features/providers/pages/ProviderListPage";
 import NewProviderPage from "./features/providers/pages/NewProviderPage";
 import newProviderAction from "./features/providers/hooksAndActions/newProviderAction";
+import ProviderOverview from "./features/providers/pages/ProviderOverview";
+import providerOverviewLoader from "./features/providers/hooksAndActions/providerOverviewLoader";
+import providerOverviewRedirectLoader from "./features/providers/hooksAndActions/providerOverviewRedirectLoader";
+import ProviderProfile from "./features/providers/subfeatures/profile/pages/ProviderProfile";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -119,6 +123,14 @@ const router = createBrowserRouter(
         </Route>
         <Route path="providers">
           <Route index element={<ProviderList />} />
+          <Route
+            path=":providerId"
+            element={<ProviderOverview />}
+            loader={providerOverviewLoader}
+          >
+            <Route index loader={providerOverviewRedirectLoader} />
+            <Route path="profile" element={<ProviderProfile />} />
+          </Route>
           <Route
             path="new"
             element={<NewProviderPage />}
