@@ -3,12 +3,17 @@ import SectionTitle from "@/components/formComponents/SectionTitle";
 import TextInputField from "@/components/formComponents/TextInputField";
 import dateAsInputFieldFormat from "@/lib/utils/formatting/dateAsInputFieldFormat";
 import { Form } from "react-router";
-import useAddNote from "../hooks/useAddNote";
+import useAddNote from "./useAddNote";
 import { useEffect } from "react";
+import MultiTagInput from "./MultiTagInput";
+// import addNote from "@/App/features/cases/subfeatures/caseNotes/services/addNote";
 
-const NoteTypes = ["Case Management", "Supervision", "Staffing"];
-
-export default function AddNoteRow({ action = "", onNewNote = () => {} }) {
+export default function AddNoteBox({
+  action = "",
+  onNewNote = () => {},
+  noteTypes = [],
+  addNoteService,
+}) {
   const {
     submitNote,
     isSubmitting,
@@ -16,7 +21,7 @@ export default function AddNoteRow({ action = "", onNewNote = () => {} }) {
     formChanged,
     readyToSubmit,
     newNote,
-  } = useAddNote();
+  } = useAddNote(addNoteService);
 
   useEffect(() => {
     console.log("adding new note");
@@ -54,12 +59,18 @@ export default function AddNoteRow({ action = "", onNewNote = () => {} }) {
           required={error}
           autoComplete={false}
         />
-        <SearchableDropDown
+        {/* <SearchableDropDown
           options={NoteTypes}
           name="noteType"
           placeholder="Type"
           className="w-fit"
           required={error}
+        /> */}
+        <MultiTagInput
+          name="noteType"
+          placeholder="Type"
+          className="w-fit"
+          suggestions={noteTypes}
         />
         <button
           className="btn  btn-success dark:btn-soft self-center"

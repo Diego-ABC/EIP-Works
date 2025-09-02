@@ -19,10 +19,10 @@ export default function ProviderOverview() {
       href: "documents",
       name: "Documents",
     },
-    // {
-    //   href: "notes",
-    //   name: "Notes",
-    // },
+    {
+      href: "notes",
+      name: "Notes",
+    },
   ];
   return (
     <ProviderProvider initialProvider={provider}>

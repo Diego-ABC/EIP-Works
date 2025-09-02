@@ -71,7 +71,11 @@ export default function DateField({ label, name, className }) {
     <DatePicker name={name} aria-label={label}>
       {/* <Label>Date</Label> */}
       <Group
-        className={classMerge(textFieldStyle, className, "floating-label")}
+        className={classMerge(
+          textFieldStyle,
+          className,
+          "floating-label w-full"
+        )}
       >
         {label && <span className="">{label}</span>}
         <DateInput className="grow">

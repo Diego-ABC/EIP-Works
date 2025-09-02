@@ -4,6 +4,23 @@ import TextInputField from "@/components/formComponents/TextInputField";
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 import ProvidersList from "../components/ProvidersList";
+import objectHasText from "@/lib/utils/filters/objectHasText";
+
+const providerPropertiesArray = ({
+  id,
+  firstName,
+  lastName,
+  email,
+  phone,
+  altPhone,
+  disciplines,
+}) => {
+  return {
+    href: `/providers/${id}`,
+    className: "",
+    content: [firstName + " " + lastName, phone, email, disciplines.join(", ")],
+  };
+};
 
 export default function ProviderListPage() {
   const { providers: initialProviders, error } = useLoaderData() || {};
@@ -39,7 +56,10 @@ export default function ProviderListPage() {
         <TextInputField placeholder="global filter" onChange={handleFilter} />
       </div>
       {error && <p className="font-medium text-error">{error}</p>}
-      <ProvidersList headers={["Provider", "Phone", "Email", "Services"]} />
+      <ProvidersList
+        headers={["Provider", "Phone", "Email", "Services"]}
+        providers={providers.map(providerPropertiesArray)}
+      />
     </>
   );
 }

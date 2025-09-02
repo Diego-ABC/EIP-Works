@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { useTextField } from "react-aria";
 import textFieldStyle from "./textFieldStyle";
 import { XIcon } from "@phosphor-icons/react";
+import classMerge from "@/lib/utils/stylings/classMerge";
 
 // These are for when the colors are better picked to help distinguish different items
 // // simple deterministic hash
@@ -44,7 +45,11 @@ export default function MultiTagInput({
   suggestions = [],
   label,
   defaultTags = [],
+  className = "",
   containerClassName = "",
+  allowCustom = false,
+  placeholder,
+  floatingLabel = "",
 }) {
   const [tags, setTags] = useState(defaultTags);
   const [inputValue, setInputValue] = useState("");
@@ -61,10 +66,14 @@ export default function MultiTagInput({
     {
       value: inputValue,
       onChange: setInputValue,
-      placeholder: "Add a service...",
+      placeholder,
       onKeyDown: (e) => {
         if (e.key === "Enter") {
           e.preventDefault();
+          if (allowCustom && inputValue.trim()) {
+            addTag(inputValue.trim());
+            return;
+          }
           if (filtered.length > 0) {
             addTag(filtered[0]);
           }
@@ -94,14 +103,18 @@ export default function MultiTagInput({
 
   return (
     <div
-      className={"dropdown min-h-fit " + containerClassName}
+      className={"dropdown min-h-fit floating-label " + containerClassName}
       onClick={() => inputRef.current?.focus()}
     >
+      {floatingLabel && (
+        <span className="font-medium text-base">{floatingLabel}</span>
+      )}
       <div
-        className={
-          "flex flex-row flex-wrap items-center gap-1 p-2 w-full min-h-fit " +
+        className={classMerge(
+          "flex flex-row flex-wrap items-center gap-1 p-2 min-h-fit",
+          className,
           textFieldStyle
-        }
+        )}
       >
         {tags.map((tag, i) => (
           <span
@@ -123,14 +136,14 @@ export default function MultiTagInput({
         <input
           {...inputProps}
           ref={inputRef}
-          className="w-auto min-w-16 basis-0 grow"
+          className="w-auto min-w-16 basis-0 grow "
         />
       </div>
 
       {/* hidden input so it works with HTML forms / Firestore */}
       <input type="hidden" name={name} value={JSON.stringify(tags)} />
       {open && filtered.length > 0 && (
-        <div className="dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-full max-h-60 overflow-auto flex flex-row flex-wrap gap-1">
+        <div className="dropdown-content z-[1] p-2 shadow bg-base-100 border-2 border-t-0 border-base-content rounded-box w-full max-h-60 overflow-auto flex flex-row flex-wrap gap-1">
           {filtered.map((s) => (
             <button
               type="button"

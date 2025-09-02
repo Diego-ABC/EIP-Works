@@ -23,7 +23,11 @@ const Padding = ({ grow = false }) => (
   ></div>
 );
 
-export default function TabLinks({ className, links = [] }) {
+export default function TabLinks({
+  className,
+  bgColor = "bg-primary/20 dark:bg-primary hover:bg-primary/40 dark:hover:bg-primary/80",
+  links = [],
+}) {
   return (
     <div className={classMerge(className, "flex flex-row")}>
       <Padding />
@@ -36,7 +40,8 @@ export default function TabLinks({ className, links = [] }) {
               "grow border-black dark:border-white first:border-l-2 border-t-2 justify-center flex flex-row px-4 font-medium group-first:border-l-2 " +
               (isActive
                 ? " border-b-0 pb-3 pt-3 border-l-2 border-r-2"
-                : " bg-primary/20 dark:bg-primary py-2 border-b-2 border-r-2 [&:has(+*.pt-3)]:border-r-0")
+                : " py-2 border-b-2 border-r-2 [&:has(+*.pt-3)]:border-r-0 " +
+                  bgColor)
             }
           >
             {name}

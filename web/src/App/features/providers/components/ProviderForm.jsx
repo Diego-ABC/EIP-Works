@@ -96,12 +96,14 @@ export default function ProviderForm({
           // className="w-full input-sm @lg:input-md"
           defaultValue={phone}
           // required={showRequired}
+          onChange={(e) => (e.target.value = formatPhoneNumber(e.target.value))}
         />
         <TextInputField
           name="altPhone"
           placeholder="Alt Phone"
           // className="w-full input-sm @lg:input-md"
           defaultValue={altPhone}
+          onChange={(e) => (e.target.value = formatPhoneNumber(e.target.value))}
         />
 
         <SectionTitle className="col-span-full mt-3">

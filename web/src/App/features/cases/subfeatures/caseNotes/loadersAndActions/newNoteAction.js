@@ -10,6 +10,7 @@ export default async function newNoteAction({ request, params }) {
     if (!noteDate) errors.noteDate = "date missing";
     if (!noteContent) errors.noteContent = "content missing";
     if (!noteType) errors.noteType = "note type missing";
+
     if (Object.keys(errors).length) return errors;
     await addNote({
       caseId,
@@ -17,7 +18,7 @@ export default async function newNoteAction({ request, params }) {
       userId,
       userName,
       noteContent,
-      noteType,
+      noteType: JSON.parse(noteType),
     });
   } catch (err) {
     return { error: { message: err.message } };

@@ -3,21 +3,20 @@ import NotesTable from "@/components/dataDisplay/NotesTable";
 import AddNoteBox from "@/components/formComponents/AddNoteBox";
 import { useLoaderData } from "react-router";
 import { useState } from "react";
-import addNote from "../services/addNote";
+import addProviderNote from "../services/addProviderNote";
 
-export default function CaseNotes() {
+export default function ProviderNotes() {
   const { notes: initialNotes, error } = useLoaderData();
   const [notes, setNotes] = useState(initialNotes);
   const onNewNote = (newNote) => {
-    console.log(newNote);
     setNotes([...notes, newNote]);
   };
   return (
     <div className="py-3 min-w-full flex flex-col gap-3">
       <AddNoteBox
         onNewNote={onNewNote}
-        noteTypes={["Case Management", "Supervision", "Staffing"]}
-        addNoteService={addNote}
+        noteTypes={["HR", "Payroll", "Staffing"]}
+        addNoteService={addProviderNote}
       />
       {error && <p className="font-medium text-error">{error}</p>}
       <NotesTable notes={notes} />

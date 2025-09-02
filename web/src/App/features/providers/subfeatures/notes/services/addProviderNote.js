@@ -6,17 +6,17 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
-export default async function addNote({
-  caseId,
+export default async function addProviderNote({
+  providerId,
   noteDate,
   userId,
   userName,
   noteContent,
   noteType,
 }) {
-  const noteRef = doc(collection(getFirestore(), "caseNotes"));
+  const noteRef = doc(collection(getFirestore(), "providerNotes"));
   await setDoc(noteRef, {
-    caseId,
+    providerId,
     noteDate,
     userId,
     userName,

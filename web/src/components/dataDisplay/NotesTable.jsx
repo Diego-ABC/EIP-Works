@@ -1,5 +1,5 @@
 import GridTable from "@/components/dataDisplay/GridTable/GridTable";
-import AddNoteRow from "./AddNoteBox";
+import AddNoteRow from "../formComponents/AddNoteBox";
 
 // caseId,
 // noteDate,
@@ -12,7 +12,7 @@ const noteToRow = (note) => [
   note.noteDate,
   note.noteContent,
   note.userName,
-  note.noteType,
+  note.noteType.join(", "),
 ];
 
 // this function is here because notes added are rendered immediately
@@ -41,6 +41,8 @@ function sortNotes(a, b) {
 export default function NotesTable({ notes = [] }) {
   const headers = ["Date", "Note", "Created By", "Note Type"];
 
+  console.log(notes);
+  console.log(notes.sort(sortNotes).map(noteToRow));
   return (
     <GridTable className="grid-cols-[auto_1fr_auto_auto]">
       {[headers, ...notes.sort(sortNotes).map(noteToRow)]}

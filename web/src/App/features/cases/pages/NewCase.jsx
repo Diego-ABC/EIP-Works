@@ -15,6 +15,7 @@ import CaseProfileForm from "../components/CaseProfileForm";
 
 export default function NewCase() {
   const { error } = useActionData() || {};
+  const [formEdited, setFormEdited] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   useEffect(() => {
     if (error) {
@@ -26,7 +27,16 @@ export default function NewCase() {
   return (
     <div className="@container w-full">
       <DashboardHeader>Cases {">"} New</DashboardHeader>
-      <CaseProfileForm />
+      <CaseProfileForm
+        canSave={formEdited}
+        onChange={() => {
+          setFormEdited(true);
+        }}
+        onSubmit={() => {
+          setSubmitting(true);
+        }}
+        submitting={submitting}
+      />
     </div>
   );
 }

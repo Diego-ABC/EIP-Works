@@ -50,6 +50,9 @@ import ProviderOverview from "./features/providers/pages/ProviderOverview";
 import providerOverviewLoader from "./features/providers/hooksAndActions/providerOverviewLoader";
 import providerOverviewRedirectLoader from "./features/providers/hooksAndActions/providerOverviewRedirectLoader";
 import ProviderProfile from "./features/providers/subfeatures/profile/pages/ProviderProfile";
+import providerListLoader from "./features/providers/hooksAndActions/providerListLoader";
+import ProviderNotes from "./features/providers/subfeatures/notes/pages/ProviderNotes";
+import providerNotesLoader from "./features/providers/subfeatures/notes/loadersAndActions/providerNotesLoader";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -122,7 +125,7 @@ const router = createBrowserRouter(
           />
         </Route>
         <Route path="providers">
-          <Route index element={<ProviderList />} />
+          <Route index element={<ProviderList />} loader={providerListLoader} />
           <Route
             path=":providerId"
             element={<ProviderOverview />}
@@ -130,6 +133,11 @@ const router = createBrowserRouter(
           >
             <Route index loader={providerOverviewRedirectLoader} />
             <Route path="profile" element={<ProviderProfile />} />
+            <Route
+              path="notes"
+              element={<ProviderNotes />}
+              loader={providerNotesLoader}
+            />
           </Route>
           <Route
             path="new"

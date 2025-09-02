@@ -17,6 +17,7 @@ export default function TextInputField({
   onInput = () => {},
   // value = undefined,
   autoComplete = false,
+  pattern,
 }) {
   // if (label) return <label></label>
 
@@ -38,6 +39,7 @@ export default function TextInputField({
         defaultValue={defaultValue}
         onInput={onInput}
         autoComplete={autoComplete ? "on" : "off"}
+        pattern={pattern}
       />
       {rightIcon}
       {label && labelRight && <span className="label">{label}</span>}

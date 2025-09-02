@@ -1,6 +1,6 @@
 import { useUser } from "@/App/features/auth/providers/UserProvider";
 import { useParams } from "react-router";
-import addNote from "../services/addNote";
+// import addNote from "../services/addNote";
 import { useState } from "react";
 
 // caseId,
@@ -9,8 +9,8 @@ import { useState } from "react";
 // userName,
 // noteContent,
 // noteType,
-export default function useAddNote() {
-  const { caseId } = useParams();
+export default function useAddNote(addNoteService) {
+  const params = useParams();
   const {
     user: { displayName: userName, uid: userId },
   } = useUser();
@@ -32,9 +32,14 @@ export default function useAddNote() {
       if (!noteContent) throw new Error("note missing");
       // if (!noteType) throw new Error("note type missing");
 
-      const note = { ...noteData, userName, userId, caseId };
-      const newNoteId = await addNote(note);
-      setNewNote({ id: newNoteId, ...note, createdAt: new Date() });
+      const note = { ...noteData, userName, userId, ...params };
+      const newNoteId = await addNoteService(note);
+      setNewNote({
+        id: newNoteId,
+        ...note,
+        noteType: JSON.parse(noteType),
+        createdAt: new Date(),
+      });
       form.reset();
       setReadyToSubmit(false);
     } catch (err) {
